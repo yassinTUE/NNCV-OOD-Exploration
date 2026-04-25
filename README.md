@@ -1,6 +1,6 @@
 # NNCV Semantic Segmentation + OOD Detection
 
-This repository contains code used for a project on semantic segmentation and out-of-distribution (OOD) detection based on a SegFormer B2 model trained on Cityscapes, and using output logits, classifying an image as ID or OOD based on a confidence score. This Github enables reproducibility of results
+This repository contains code used for a project on semantic segmentation and out o -distribution (OOD) detection based on a SegFormer B2 model trained on Cityscapes, and using output logits, classifying an image as ID or OOD based on a confidence score. This Github enables reproducibility of results.
 
 ## Repository contents
 
