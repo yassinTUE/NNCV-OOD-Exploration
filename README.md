@@ -5,13 +5,13 @@ This repository contains code used for a project on semantic segmentation and ou
 ## Repository contents
 
 - `Model Training/`
-  Final model training code and model definitions.
+  Final model training code and model definitions, coded as in paper.
 - `Inference/`
-  Evaluation scripts for image-level energy/MSP OOD scoring and patch-based OOD scoring.
+  Evaluation scripts for image energy and MSP pixel OOD scoring and patch OOD scoring.
 - `Post Processing/`
   Scripts for Gaussian fitting, hyperparameter analysis, and figure generation.
 - `Docker Build/`
-  Submission-oriented prediction scripts and Docker build files.
+  Files for building your own Docker containers.
 - `Data Download/`
   Helper scripts for downloading datasets used during development.
 - `Checkpoints/`
@@ -23,9 +23,9 @@ This repository contains code used for a project on semantic segmentation and ou
   `Model Training/model_segformer.py`
 - Final SegFormer training script:
   `Model Training/train_Segfromer.py`
-- Image-level OOD analysis:
+- Image level OOD analysis:
   `Inference/predict_ood.py`
-- Patch-based OOD analysis:
+- Patch/Window OOD analysis:
   `Inference/predict_ood_patches.py`
 - Post-processing and plotting:
   `Post Processing/Gaussian_Fitting_Energy_and_MSP.py`
@@ -36,13 +36,13 @@ This repository contains code used for a project on semantic segmentation and ou
 
 This project was originally developed across both local and HPC environments.
 
-As a result, some scripts still contain older local or HPC-specific paths and may require path cleanup before they run unchanged on another machine. In particular, data download, training, and inference job scripts may still assume the original development environment.
+As a result, some scripts use local or HPC specific paths and might require path cleanup before they run unchanged. In particular, data download, training, and inference job scripts may still assume the original development environment, and are not flexible for new enviroments.
 
-Checkpoint handling was used in both environments, while most other scripts were run locally during development.
+Checkpoint handling was done in the HPC, while most other scripts were run locally during development.
 
 ## Reproducibility note
 
-The core training, inference, and post-processing code is included here, but this repository should be treated as the project codebase rather than a fully cleaned final reproduction package. Before reuse on a new machine, please verify:
+The core training, inference, and post-processing code is included here, but this repository should be treated as the project codebase rather than a fully cleaned final reproduction package. Before reuse on a new machine:
 
 - dataset paths
 - checkpoint paths
