@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+.env
+container.sif
+
+Checkpoints/model.pt
+Model Training/segformer_b2_local/model.safetensors
