@@ -200,7 +200,6 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--checkpoint", type=str, required=True)
     parser.add_argument("--id-dir", type=str, required=True)
-    parser.add_argument("--near-ood-dir", type=str, required=True)
     parser.add_argument("--near-ood2-dir", type=str, required=True)
     parser.add_argument("--far-ood-dir", type=str, required=True)
     parser.add_argument("--out-scores-csv", type=str, default="ood_compare_scores.csv")
@@ -217,28 +216,22 @@ def main():
 
     base_rows = []
     base_rows += process_folder(model, Path(args.id_dir), "id", 0, device, args.temperature)
-    base_rows += process_folder(model, Path(args.near_ood_dir), "near_ood_fishy", 1, device, args.temperature)
     base_rows += process_folder(model, Path(args.near_ood2_dir), "near_ood_ra21", 1, device, args.temperature)
     base_rows += process_folder(model, Path(args.far_ood_dir), "far_ood", 1, device, args.temperature)
 
     id_rows = [r for r in base_rows if r["split"] == "id"]
-    fishy_rows = [r for r in base_rows if r["split"] == "near_ood_fishy"]
     ra21_rows = [r for r in base_rows if r["split"] == "near_ood_ra21"]
-    near_combined_rows = fishy_rows + ra21_rows
     far_rows = [r for r in base_rows if r["split"] == "far_ood"]
 
     threshold_sets = {
-        "fishy": id_rows + fishy_rows,
         "ra21": id_rows + ra21_rows,
-        "near_combined": id_rows + near_combined_rows,
+        "all": id_rows + ra21_rows + far_rows,
     }
 
     eval_sets = {
-        "fishy": id_rows + fishy_rows,
         "ra21": id_rows + ra21_rows,
-        "near_combined": id_rows + near_combined_rows,
         "far": id_rows + far_rows,
-        "all": id_rows + near_combined_rows + far_rows,
+        "all": id_rows + ra21_rows + far_rows,
     }
 
     methods = {
